@@ -15,6 +15,7 @@ import { AuthGuard } from "./_guards/auth.guard";
 import { UserService } from "./_services/user.service";
 import { routing } from "./app.routing";
 import { HeaderComponent } from './header/header.component';
+import { DropdownDirective } from './_directives/dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HeaderComponent } from './header/header.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    HeaderComponent
+    HeaderComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,
