@@ -12,10 +12,13 @@ import { RegisterComponent } from './register/register.component';
 import { AlertService } from "./_services/alert.service";
 import { AuthenticationService } from "./_services/authentication.service";
 import { AuthGuard } from "./_guards/auth.guard";
+import { MailService } from "./_services/mail.service";
 import { UserService } from "./_services/user.service";
 import { routing } from "./app.routing";
 import { HeaderComponent } from './header/header.component';
 import { DropdownDirective } from './_directives/dropdown.directive';
+import { InboxComponent } from './inbox/inbox.component';
+import { OutboxComponent } from './outbox/outbox.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,9 @@ import { DropdownDirective } from './_directives/dropdown.directive';
     LoginComponent,
     RegisterComponent,
     HeaderComponent,
-    DropdownDirective
+    DropdownDirective,
+    InboxComponent,
+    OutboxComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +42,7 @@ import { DropdownDirective } from './_directives/dropdown.directive';
     AuthGuard,
     AlertService,
     AuthenticationService,
+    MailService,
     UserService
   ],
   bootstrap: [AppComponent]

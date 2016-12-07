@@ -1,0 +1,24 @@
+<div class="col-md-8 col-md-offset-2">
+  <h1>{{currentUser.username}} Outbox</h1>
+  <hr>
+  <h3>Mail sent:</h3>
+  <ul>
+    <li *ngFor="let mail of mailsSent">
+      <b>{{mail.subject}}</b>
+      <br>
+      On {{mail.dateSent | date:'dd/MM/yyyy - HH:mm:ss'}}
+      <br>
+      {{mail.body}}
+      <br>
+      <i>Sent by {{mail.sender.username}} ({{mail.sender.firstname}} {{mail.sender.lastname}})</i>
+      <br>
+      <i>To :</i>
+      <ul>
+        <li *ngFor="let receiver of mail.receivers">
+          {{receiver.username}} ({{receiver.firstname}} {{receiver.lastname}})
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><a [routerLink]="['/login']">Logout</a></p>
+</div>
