@@ -19,6 +19,10 @@ import { HeaderComponent } from './header/header.component';
 import { DropdownDirective } from './_directives/dropdown.directive';
 import { InboxComponent } from './inbox/inbox.component';
 import { OutboxComponent } from './outbox/outbox.component';
+import { MailFilterPipe } from './_pipes/mail-filter.pipe';
+import { MailOrderbyPipe } from './_pipes/mail-orderby.pipe';
+import { MailViewComponent } from './mail-view/mail-view.component';
+import { TinyComponent } from './tiny/tiny.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,11 @@ import { OutboxComponent } from './outbox/outbox.component';
     HeaderComponent,
     DropdownDirective,
     InboxComponent,
-    OutboxComponent
+    OutboxComponent,
+    MailFilterPipe,
+    MailOrderbyPipe,
+    MailViewComponent,
+    TinyComponent
   ],
   imports: [
     BrowserModule,

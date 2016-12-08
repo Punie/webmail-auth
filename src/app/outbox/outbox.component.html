@@ -1,24 +1,56 @@
-<div class="col-md-8 col-md-offset-2">
-  <h1>{{currentUser.username}} Outbox</h1>
-  <hr>
-  <h3>Mail sent:</h3>
-  <ul>
-    <li *ngFor="let mail of mailsSent">
-      <b>{{mail.subject}}</b>
-      <br>
-      On {{mail.dateSent | date:'dd/MM/yyyy - HH:mm:ss'}}
-      <br>
-      {{mail.body}}
-      <br>
-      <i>Sent by {{mail.sender.username}} ({{mail.sender.firstname}} {{mail.sender.lastname}})</i>
-      <br>
-      <i>To :</i>
-      <ul>
-        <li *ngFor="let receiver of mail.receivers">
-          {{receiver.username}} ({{receiver.firstname}} {{receiver.lastname}})
-        </li>
-      </ul>
-    </li>
-  </ul>
-  <p><a [routerLink]="['/login']">Logout</a></p>
+<h1>Outbox - <i>{{currentUser.username}}</i></h1>
+
+<hr>
+
+<wm-mail-view *ngIf="mailView" [mail]="mailSelected" (actionCanceled)="closePannel()"></wm-mail-view>
+
+<hr>
+<div class="row">
+  <div class="col-md-8">
+  </div>
+  <div class="col-md-4">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Filter" #f (keyup)="0">
+      <span class="input-group-addon">
+        <span class="glyphicon glyphicon-filter"></span>
+      </span>
+    </div>
+  </div>
 </div>
+<hr>
+
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+    <th>
+      From
+    </th>
+    <th>
+      Mail
+    </th>
+    <th>
+      Received
+    </th>
+    <th>
+
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let mail of mailsSent | mailFilter:f.value">
+    <td><b><i>{{mail.sender.username}}</i></b></td>
+    <td><b>{{mail.subject}}</b> - <i>{{mail.body | slice:0:64}}...</i></td>
+    <td><i>{{mail.dateSent | date}}</i></td>
+    <td>
+      <div>
+        <p>
+          <button class="btn btn-xs btn-primary glyphicon glyphicon-eye-open" type="button" (click)="viewMail(mail)"></button>
+          <button class="btn btn-xs btn-info glyphicon glyphicon-share-alt" type="button"></button>
+          <button class="btn btn-xs btn-danger glyphicon glyphicon-remove" type="button"></button>
+        </p>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<p><a [routerLink]="['/login']">Logout</a></p>

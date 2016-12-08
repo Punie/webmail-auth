@@ -11,6 +11,8 @@ import { User } from "../_models/user";
 export class OutboxComponent implements OnInit {
   currentUser: User;
   mailsSent: Mail[];
+  mailSelected: Mail;
+  mailView = false;
 
   constructor(private mailService: MailService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -22,4 +24,12 @@ export class OutboxComponent implements OnInit {
     );
   }
 
+  viewMail(mail: Mail) {
+    this.mailView = true;
+    this.mailSelected = mail;
+  }
+
+  closePannel() {
+    this.mailView = false;
+  }
 }
