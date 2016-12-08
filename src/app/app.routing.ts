@@ -14,6 +14,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'inbox', component: InboxComponent, canActivate: [AuthGuard] },
   { path: 'outbox', component: OutboxComponent, canActivate: [AuthGuard] },
+  { path: 'about', component: HomeComponent, canActivate: [AuthGuard] },
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
