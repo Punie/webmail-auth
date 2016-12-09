@@ -20,7 +20,9 @@ export class OutboxComponent implements OnInit {
 
   ngOnInit() {
     this.mailService.getMailsSent(this.currentUser).subscribe(
-      mails => this.mailsSent = mails
+      mails => this.mailsSent = mails.sort(
+        (a,b) => new Date(b.dateSent).getTime() - new Date(a.dateSent).getTime()
+      )
     );
   }
 

@@ -16,6 +16,7 @@ export class MailFilterPipe implements PipeTransform {
     let formattedArgs = args.toLowerCase().trim();
     return items.filter(
       item => item.sender.username.toLowerCase().includes(formattedArgs)
+           || item.receivers.filter(x => x.username.toLowerCase().includes(formattedArgs)).length > 0
            || item.subject.toLowerCase().includes(formattedArgs)
            || item.body.toLowerCase().includes(formattedArgs)
     );

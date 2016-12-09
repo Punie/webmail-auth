@@ -1,6 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnInit, AfterViewInit, OnChanges} from '@angular/core';
 
 import { Mail } from "../_models/mail";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
   selector: 'wm-mail-view',
@@ -14,9 +15,17 @@ import { Mail } from "../_models/mail";
     }
 `]
 })
-export class MailViewComponent {
+export class MailViewComponent implements OnChanges {
   @Input() mail: Mail;
   @Output() actionCanceled= new EventEmitter();
+  body;
+
+  constructor(private sanitizer: DomSanitizer) { }
+
+  ngOnChanges() {
+    const mailBody = this.mail.body;
+    this.body = this.sanitizer.bypassSecurityTrustHtml(mailBody);
+  }
 
   onCancel() {
     this.actionCanceled.emit(null);

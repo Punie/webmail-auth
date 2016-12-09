@@ -21,7 +21,9 @@ export class InboxComponent implements OnInit {
 
   ngOnInit() {
     this.mailService.getMailsReceived(this.currentUser).subscribe(
-      mails => this.mailsReceived = mails
+      mails => this.mailsReceived = mails.sort(
+        (a,b) => new Date(b.dateSent).getTime() - new Date(a.dateSent).getTime()
+      )
     );
   }
 

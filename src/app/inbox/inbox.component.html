@@ -22,24 +22,22 @@
 <table class="table table-bordered table-striped">
   <thead>
   <tr>
-    <th>
-      From
-    </th>
-    <th>
-      Mail
-    </th>
-    <th>
-      Received
-    </th>
-    <th>
-
-    </th>
+    <th>From</th>
+    <th>To</th>
+    <th>Mail</th>
+    <th>Received</th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let mail of mailsReceived | mailFilter:f.value">
     <td><b><i>{{mail.sender.username}}</i></b></td>
-    <td><b>{{mail.subject}}</b> - <i>{{mail.body | slice:0:64}}...</i></td>
+    <td>
+      <p *ngFor="let receiver of mail.receivers">
+        <i>{{receiver.username}}</i>
+      </p>
+    </td>
+    <td><b>{{mail.subject}}</b><!-- - <i>{{mail.body | slice:0:64}}...</i>--></td>
     <td><i>{{mail.dateSent | date}}</i></td>
     <td>
       <div>

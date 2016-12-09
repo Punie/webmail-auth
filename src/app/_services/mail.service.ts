@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Http, Response} from "@angular/http";
+import { Http, Response, Headers, RequestOptions } from "@angular/http";
 
 import { Observable } from "rxjs/Rx";
 
@@ -23,6 +23,15 @@ export class MailService {
     let getUrl = this.userUrl + user.id + '/sent';
     return this.http.get(getUrl)
       .map((response: Response) => response.json());
+  }
+
+  sendMail(mail: Mail) : Observable<Mail> {
+    let body = JSON.stringify(mail);
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this.mailUrl, body, options)
+                    .map(mail => mail.json());
   }
 
 }

@@ -23,6 +23,7 @@ import { MailFilterPipe } from './_pipes/mail-filter.pipe';
 import { MailOrderbyPipe } from './_pipes/mail-orderby.pipe';
 import { MailViewComponent } from './mail-view/mail-view.component';
 import { TinyComponent } from './tiny/tiny.component';
+import { SendMailComponent } from './send-mail/send-mail.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { TinyComponent } from './tiny/tiny.component';
     MailFilterPipe,
     MailOrderbyPipe,
     MailViewComponent,
-    TinyComponent
+    TinyComponent,
+    SendMailComponent
   ],
   imports: [
     BrowserModule,
