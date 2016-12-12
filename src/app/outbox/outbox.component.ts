@@ -19,11 +19,7 @@ export class OutboxComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.mailService.getMailsSent(this.currentUser).subscribe(
-      mails => this.mailsSent = mails.sort(
-        (a,b) => new Date(b.dateSent).getTime() - new Date(a.dateSent).getTime()
-      )
-    );
+    this.loadMailsSent()
   }
 
   viewMail(mail: Mail) {
@@ -31,7 +27,22 @@ export class OutboxComponent implements OnInit {
     this.mailSelected = mail;
   }
 
+  deleteMail(mail: Mail) {
+    this.mailService.deleteMail(mail.id).subscribe(() => {
+      this.mailView = false;
+      this.loadMailsSent();
+    });
+  }
+
   closePannel() {
     this.mailView = false;
+  }
+
+  private loadMailsSent() {
+    this.mailService.getMailsSent(this.currentUser).subscribe(
+      mails => this.mailsSent = mails.sort(
+        (a,b) => new Date(b.dateSent).getTime() - new Date(a.dateSent).getTime()
+      )
+    );
   }
 }

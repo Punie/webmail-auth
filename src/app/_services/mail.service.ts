@@ -34,4 +34,8 @@ export class MailService {
                     .map(mail => mail.json());
   }
 
+  deleteMail(id: number) : Observable<Response> {
+    return this.http.delete(this.mailUrl + id);
+  }
+
 }

@@ -29,10 +29,6 @@ export class SendMailComponent implements OnInit {
     this.loadAllUsers();
   }
 
-  // addReceiver(user: User) {
-  //   this.model.receivers = this.model.receivers.concat(user);
-  // }
-
   sendMail() {
     this.mailService.sendMail(this.model).subscribe(
       data => {

@@ -20,11 +20,7 @@ export class InboxComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.mailService.getMailsReceived(this.currentUser).subscribe(
-      mails => this.mailsReceived = mails.sort(
-        (a,b) => new Date(b.dateSent).getTime() - new Date(a.dateSent).getTime()
-      )
-    );
+    this.loadMailsReceived();
   }
 
   viewMail(mail: Mail) {
@@ -32,7 +28,22 @@ export class InboxComponent implements OnInit {
     this.mailSelected = mail;
   }
 
+  deleteMail(mail: Mail) {
+    this.mailService.deleteMail(mail.id).subscribe(() => {
+      this.mailView = false;
+      this.loadMailsReceived();
+    });
+  }
+
   closePannel() {
     this.mailView = false;
+  }
+
+  private loadMailsReceived() {
+    this.mailService.getMailsReceived(this.currentUser).subscribe(
+      mails => this.mailsReceived = mails.sort(
+        (a,b) => new Date(b.dateSent).getTime() - new Date(a.dateSent).getTime()
+      )
+    );
   }
 }
