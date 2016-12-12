@@ -16,14 +16,11 @@
   <div class="form-group">
     <label for="subject">Subject</label>
     <input type="text" class="form-control" name="subject" [(ngModel)]="model.subject" required />
-    <!--<div *ngIf="f.submitted && !subject.valid" class="help-block">Subject is required</div>-->
   </div>
 
   <div class="form-group">
     <label for="body">Body</label>
     <wm-tiny [elementId]="'mailbody'" (onEditorKeyup)="setBody($event)"></wm-tiny>
-    <!--<input type="text" class="form-control" name="lastName" [(ngModel)]="model.lastname" #lastName="ngModel" required />-->
-    <!--<div *ngIf="f.submitted && !lastName.valid" class="help-block">Last Name is required</div>-->
   </div>
 
   <div class="form-group">
